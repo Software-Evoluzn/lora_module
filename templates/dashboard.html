@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
+
+</head>
+
+<body>
+
+    <div class="main_div">
+        <div>
+            <img class="evoluzn_logo" src="../static/img/Evoluzn_Logo.png">
+        </div>
+        <div class="dashboard_master_parent_div mt-3">
+            <div class="dashboard_master_child_div">
+                <a class="dashboard_light_anchor" href="../templates/lights.html">
+
+                    <div class="dashboard_masterswitch_div">
+                        <h3 class="box_heading">MASTER SWITCH</h3>
+
+                    </div>
+
+
+                    <div class="toggle_div">
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle_span"></span>
+                        </label>
+                    </div>
+                </a>
+
+            </div>
+            <div class="dashboard_master_child_div">
+                <h3 class="box_heading">MASTER AUTOMATION</h3>
+
+                <div class="toggle_div">
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle_span"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="dashboard_master_child_div">
+                <h3 class="box_heading">TOTAL POWER CONSUMPTION</h3>
+
+                <div class="toggle_div">
+                    <div class="dashboard_t_p_c_values">5345346<span class="dashboard_t_p_c_span">Kwh</span></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="dashboard_master_child_div dashboard_margin_top">
+            <h3 class="box_heading">MASTER SCHEDULLING</h3>
+
+            <div class="dashboard_dropdown_div">
+                <select class="dashboard_dropdown">
+                    <option>Set Range</option>
+                    <option>Today</option>
+                    <option>Weekly</option>
+                </select>
+            </div>
+
+            <div class="dashboard_time_parent_div">
+                <div class="dashboard_time_child_div">
+                    <div>
+                        From Time
+                    </div>
+                    <div>
+                        <input class="from_time_input" type="time">
+                    </div>
+                </div>
+                <div class="dashboard_time_child_div">
+                    <div>
+                        To Time
+                    </div>
+                    <div>
+                        <input class="to_time_input" type="time">
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard_ok_button_div">
+                <button class="dashboard_ok_button">OK</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

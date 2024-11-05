@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.evoluzn_logo {
+    height: 40px;
+}
+.main_div {
+    padding: 15px;
+}
+
+.main_box_div {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.light_box_parent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.light_box_child {
+
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid #474F7D;
+    border-radius: 10px;
+    color: #2B3674;
+    background-color: #ffffff;
+    height: 100px;
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+
+}
+.light_blue_bg {
+    background-color: #2B3674;
+    color: white; /* Optional: to make text more readable */
+}

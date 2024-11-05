@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.evoluzn_logo {
+    height: 40px;
+}
+
+.dashboard_master_parent_div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Adjusts to fit the screen */
+    grid-gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.main_div {
+    padding: 15px;
+}
+
+.dashboard_master_child_div {
+    transition: 0.3s;
+    text-decoration: none;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 6px;
+    border: 1px solid #474F7D;
+    border-radius: 10px;
+    color: #2B3674;
+
+}
+
+.box_heading {
+    text-align: center;
+}
+
+.toggle_div {
+    text-align: center;
+
+}
+
+.dashboard_masterswitch_div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dashboard_t_p_c_span {
+    margin-left: 10px;
+}
+
+.dashboard_dropdown {
+    height: 40px;
+    width: 100px;
+    background-color: #2a3575;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.from_time_input {
+    color: #fafafa;
+    background-color: #95a0dd;
+    height: 40px;
+    width: 90px;
+    border-radius: 5px;
+    border: none;
+}
+
+.to_time_input {
+    color: #fafafa;
+    background-color: #95a0dd;
+    height: 40px;
+    width: 90px;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.dashboard_ok_button_div {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dashboard_ok_button {
+    height: 30px;
+    width: 80px;
+    border: none;
+    color: #ffffff;
+    background-color: #2B3674;
+    border-radius: 5px;
+}
+
+.dashboard_dropdown_div {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dashboard_time_parent_div {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.dashboard_time_child_div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard_margin_top {
+    margin-top: 20px;
+}
+
+.dashboard_light_anchor {
+    text-decoration: none;
+    color: #2B3674;
+
+}
+
+.dashboard_t_p_c_values {
+    font-weight: 700;
+}
+
+/* ***************toggle switch css start***************** */
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20.4px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle_span {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20.4px;
+}
+
+.toggle_span:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+/* Change background color and position of the slider when checked */
+.toggle input:checked+.toggle_span {
+    background-color: #3965ff;
+}
+
+.toggle input:checked+.toggle_span:before {
+    transform: translateX(16px);
+}
+
+/* ***************toggle switch css end***************** */
