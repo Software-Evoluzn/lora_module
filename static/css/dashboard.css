@@ -171,7 +171,7 @@ body {
 
 /* Change background color and position of the slider when checked */
 .toggle input:checked+.toggle_span {
-    background-color: #3965ff;
+    background-color: #2B3674;
 }
 
 .toggle input:checked+.toggle_span:before {
