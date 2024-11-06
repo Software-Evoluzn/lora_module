@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
+    <title>Lights</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" />
     <link rel="stylesheet" href="../static/css/light.css" />
 
 </head>
@@ -16,7 +16,7 @@
             <img class="evoluzn_logo" src="../static/img/Evoluzn_Logo.png">
         </div>
         <div class="main_box_div">
-            <div class="light_box_parent"> 
+            <div class="light_box_parent">
                 {% for device in devices %}
                 <div class="light_box_child" data-device-id="{{ device }}">
                     {{ device }}

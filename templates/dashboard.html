@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../static/css/dashboard.css" />
-    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
-
+    <link rel="stylesheet" href="../static/css/bootstrap.css" />
+    <link rel="stylesheet" href="../static/css/datepicker.css" />
+    <script src="../static/js/datepicker.js"></script>
+   
 </head>
 
 <body>
@@ -21,7 +23,8 @@
                 <a class="dashboard_light_anchor" href="{{url_for('light')}}">
 
                     <div class="dashboard_masterswitch_div">
-                        <h3 class="box_heading">MASTER SWITCH</h3>
+                        <div class="box_heading">MASTER SWITCH</div>
+
                     </div>
                     <div class="toggle_div">
                         <label class="toggle">
@@ -32,7 +35,7 @@
                 </a>
             </div>
             <div class="dashboard_master_child_div">
-                <h3 class="box_heading">MASTER AUTOMATION</h3>
+                <div class="box_heading">MASTER AUTOMATION</div>
 
                 <div class="toggle_div">
                     <label class="toggle">
@@ -43,6 +46,8 @@
             </div>
             <!-- <div class="dashboard_master_child_div">
                 <h3 class="box_heading">TOTAL POWER CONSUMPTION</h3>
+            <div class="dashboard_master_child_div">
+                <div class="box_heading">TOTAL POWER CONSUMPTION</div>
 
                 <div class="toggle_div">
                     <div class="dashboard_t_p_c_values">5345346<span class="dashboard_t_p_c_span">Kwh</span></div>
@@ -52,68 +57,104 @@
         </div>
 
         <div class="dashboard_master_child_div dashboard_margin_top">
-            <h3 class="box_heading">MASTER SCHEDULLING</h3>
+            <div class="box_heading">MASTER SCHEDULLING</div>
 
             <div class="dashboard_dropdown_div">
-                <select class="dashboard_dropdown">
-                    <option>Today</option>
-                    <option>Weekly</option>
-                    <option>Set Range</option>
+                <select class="schedule_timeselect_options " id="dateSelect">
+                    <option value="today">Today</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="setDate">Set Date</option>
                 </select>
             </div>
+            <!-- ************** -->
+            <div id="weekly_day_range">
+                <div class="weekly_main_div" >
 
-            <div class="dashboard_time_parent_div">
-                <div class="dashboard_time_child_div">
                     <div>
-                        From Time
+                        <div>Mon</div>
+                        <input type="checkbox" class="day-checkbox">
                     </div>
                     <div>
-                        <input class="from_time_input" type="time">
+                        <div>Tue</div>
+                        <input type="checkbox" class="day-checkbox">
                     </div>
+                    <div>
+                        <div>Wed</div>
+                        <input type="checkbox" class="day-checkbox">
+                    </div>
+                    <div>
+                        <div>Thu</div>
+                        <input type="checkbox" class="day-checkbox">
+                    </div>
+                    <div>
+                        <div>Fri</div>
+                        <input type="checkbox" class="day-checkbox">
+                    </div>
+                    <div>
+                        <div>Sat</div>
+                        <input type="checkbox" class="day-checkbox">
+                    </div>
+                    <div>
+                        <div>Sun</div>
+                        <input type="checkbox" class="day-checkbox">
+                    </div>
+                    <div>
+                        <div>Every Day</div>
+                        <input type="checkbox" id="everyday-checkbox">
+                    </div>
+
                 </div>
-                <div class="dashboard_time_child_div">
-                    <div>
-                        To Time
+            </div>
+            <!-- ******* -->
+
+            <div class="schedule_select_Date_range">
+                <div class="mt-3 schedule_select_Date_range_child" id="dateRangeContainer">
+                    <label for="dateRange">Select Date Range:</label>
+                    <input class="schedule_select_Date_range_input" id="dateRange" type="text"
+                        placeholder="Select Date Range">
+                </div>
+            </div>
+
+
+            <div>
+                <div class="schedule_from_to mt-3 row">
+                    <div class="col">
+                        <div>From</div>
+                        <input class="schedule_from_time_range_input" id="fromTime" type="time">
                     </div>
-                    <div>
-                        <input class="to_time_input" type="time">
+                    <div class="col" >
+                        <div>To</div>
+                        <input class="schedule_to_time_range_input" id="toTime" type="time">
                     </div>
                 </div>
             </div>
-            <div class="dashboard_ok_button_div">
-                <button class="dashboard_ok_button">OK</button>
+            <div id="alerts"></div>
+
+            <div class="mt-4 schedule_set_date_div">
+                <button class="schedule_set_schedule" id="setScheduleBtn">SET</button>
+            </div>
+
+            <div class="mt-4 p-4 schedule_main_parent_div">
+                <h6 class="schedule_device_list">Schedule Device List</h6>
+                <div class="mt-5  schedule_list_title">
+                    <div class="row px-4">
+                        <div class="col">Device Name</div>
+                        <div class="col">Date</div>
+                        <div class="col">Schedule Time</div>
+                        <div class="col">Delete</div>
+                    </div>
+                </div>
+
+                <div id="scheduleList" class="container-fluid schedule_device_item">
+                    <!-- New schedule items will be appended here -->
+                </div>
             </div>
         </div>
     </div>
 
+
+    <script src="../static/js/dashboard.js"></script>
+       
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Master switch toggle
-        const masterSwitch = document.querySelector('.toggle input');
-        masterSwitch.addEventListener('change', function() {
-            const command = masterSwitch.checked ? 'T:5:G:G:1' : 'T:5:G:G:0';
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    console.log('Master switch turned ' + JSON.parse(xhr.responseText).state);
-                    // Update all individual switches based on master switch state
-                    const individualSwitches = document.querySelectorAll('.individual-toggle');
-                    individualSwitches.forEach(function(switchElement) {
-                        switchElement.checked = masterSwitch.checked;
-                        if (masterSwitch.checked) {
-                            switchElement.parentElement.querySelector('.toggle_span').style.backgroundColor = '#2B3674';
-                        } else {
-                            switchElement.parentElement.querySelector('.toggle_span').style.backgroundColor = '#ccc';
-                        }
-                    });
-                }
-            };
-            xhr.send('command=' + command);
-        });
-    });
-</script>
 
 </html>
