@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../static/css/dashboard.css" />
     <!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
 
@@ -18,14 +18,11 @@
         </div>
         <div class="dashboard_master_parent_div mt-3">
             <div class="dashboard_master_child_div">
-                <a class="dashboard_light_anchor" href="../templates/lights.html">
+                <a class="dashboard_light_anchor" href="{{url_for('light')}}">
 
                     <div class="dashboard_masterswitch_div">
                         <h3 class="box_heading">MASTER SWITCH</h3>
-
                     </div>
-
-
                     <div class="toggle_div">
                         <label class="toggle">
                             <input type="checkbox">
@@ -33,7 +30,6 @@
                         </label>
                     </div>
                 </a>
-
             </div>
             <div class="dashboard_master_child_div">
                 <h3 class="box_heading">MASTER AUTOMATION</h3>
@@ -45,13 +41,13 @@
                     </label>
                 </div>
             </div>
-            <div class="dashboard_master_child_div">
+            <!-- <div class="dashboard_master_child_div">
                 <h3 class="box_heading">TOTAL POWER CONSUMPTION</h3>
 
                 <div class="toggle_div">
                     <div class="dashboard_t_p_c_values">5345346<span class="dashboard_t_p_c_span">Kwh</span></div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -60,9 +56,9 @@
 
             <div class="dashboard_dropdown_div">
                 <select class="dashboard_dropdown">
-                    <option>Set Range</option>
                     <option>Today</option>
                     <option>Weekly</option>
+                    <option>Set Range</option>
                 </select>
             </div>
 
@@ -91,5 +87,33 @@
     </div>
 
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Master switch toggle
+        const masterSwitch = document.querySelector('.toggle input');
+        masterSwitch.addEventListener('change', function() {
+            const command = masterSwitch.checked ? 'T:5:G:G:1' : 'T:5:G:G:0';
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log('Master switch turned ' + JSON.parse(xhr.responseText).state);
+                    // Update all individual switches based on master switch state
+                    const individualSwitches = document.querySelectorAll('.individual-toggle');
+                    individualSwitches.forEach(function(switchElement) {
+                        switchElement.checked = masterSwitch.checked;
+                        if (masterSwitch.checked) {
+                            switchElement.parentElement.querySelector('.toggle_span').style.backgroundColor = '#2B3674';
+                        } else {
+                            switchElement.parentElement.querySelector('.toggle_span').style.backgroundColor = '#ccc';
+                        }
+                    });
+                }
+            };
+            xhr.send('command=' + command);
+        });
+    });
+</script>
 
 </html>
